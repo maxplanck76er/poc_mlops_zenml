@@ -1,0 +1,14 @@
+# environment configuration
+settings:
+  docker:
+    required_integrations:
+    requirements:
+      - prophet
+      - pandas
+
+# configuration of the Model Control Plane
+model:
+  name: "prophet_forecaster"
+  version: "production"
+  description: A simple prophet forecaster
+  tags: ["prophet", "forecaster"]

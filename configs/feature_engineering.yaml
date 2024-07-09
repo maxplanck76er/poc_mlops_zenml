@@ -1,0 +1,9 @@
+# environment configuration
+settings:
+  docker:
+#    required_integrations:
+    requirements:
+      - pandas
+
+# pipeline configuration
+test_size: 60
