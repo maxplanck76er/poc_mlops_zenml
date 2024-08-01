@@ -92,6 +92,8 @@ Examples:
     help="Disable caching for the pipeline run.",
 )
 def main(
+    bucket_uri: str = "data",
+    input_filename: str = "raw_data_histo.csv",
     train_dataset_name: str = "dataset_trn",
     train_dataset_version_name: Optional[str] = None,
     test_dataset_name: str = "dataset_tst",
@@ -122,16 +124,53 @@ def main(
         inference_pipeline: Whether to run the pipeline that performs inference.
         no_cache: If `True` cache will be disabled.
     """
+    client = Client()
+
+    config_folder = os.path.join(
+        os.path.dirname(os.path.realpath(__file__)),
+        "configs",
+    )
+
     pipeline_args = {}
     if no_cache:
         pipeline_args["enable_cache"] = False
 
     # Execute Feature Engineering Pipeline
     if feature_pipeline:
-        feature_engineering().with_options(**pipeline_args)
+        feature_engineering.with_options(**pipeline_args)(bucket_uri, input_filename)
         logger.info("Feature Engineering pipeline finished successfully!\n")
 
+        train_dataset_artifact = client.get_artifact_version(
+            train_dataset_name
+        )
+        test_dataset_artifact = client.get_artifact_version(test_dataset_name)
+        logger.info(
+            "The latest feature engineering pipeline produced the following "
+            f"artifacts: \n\n1. Train Dataset - Name: {train_dataset_name}, "
+            f"Version Name: {train_dataset_artifact.version} \n2. Test Dataset: "
+            f"Name: {test_dataset_name}, Version Name: {test_dataset_artifact.version}"
+        )
 
+    # Execute Training Pipeline
+    if training_pipeline:
+        pipeline_args = {}
+        if no_cache:
+            pipeline_args["enable_cache"] = False
+        pipeline_args["config_path"] = os.path.join(
+            config_folder, "training.yaml"
+        )
+        training.with_options(**pipeline_args)(train_dataset_artifact.id, test_dataset_artifact.id)
+        logger.info("Training pipeline finished successfully!\n\n")
+
+    if inference_pipeline:
+        pipeline_args = {}
+        if no_cache:
+            pipeline_args["enable_cache"] = False
+        pipeline_args["config_path"] = os.path.join(
+            config_folder, "inference.yaml"
+        )
+        inference.with_options(**pipeline_args)(bucket_uri, input_filename)
+        logger.info("Inference pipeline finished successfully!")
 
     # client = Client()
     #

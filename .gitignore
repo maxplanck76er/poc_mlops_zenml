@@ -1,2 +1,4 @@
 .dockerignore
 .idea/
+steps/__pycache__
+pipelines/__pycache__

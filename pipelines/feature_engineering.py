@@ -12,7 +12,9 @@ logger = get_logger(__name__)
 
 @pipeline
 def feature_engineering(
-    test_size: float = 60
+    bucket_uri: str,
+    input_filename: str,
+    test_size: int = 60
 ):
     """
     Feature engineering pipeline.
@@ -21,6 +23,8 @@ def feature_engineering(
     it into train and test sets.
 
     Args:
+        bucket_uri: The bucket uri
+        input_filename: the input file name
         test_size: Size of holdout time series for training
 
     Returns:
@@ -29,7 +33,8 @@ def feature_engineering(
     # Link all the steps together by calling them and passing the output
     # of one step as the input of the next step.
     logger.info("Entering feature_engineering pipeline")
-    raw_data = data_loader(bucket_uri="gs://poc-ctb-data", input_filename="raw_data_histo.csv")
+    #raw_data = data_loader(bucket_uri="gs://poc-ctb-data", input_filename="raw_data_histo.csv")
+    raw_data = data_loader(bucket_uri=bucket_uri, input_filename=input_filename)
     logger.info(raw_data)
 
     dataset = data_preprocessor(

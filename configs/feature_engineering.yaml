@@ -6,4 +6,4 @@ settings:
       - pandas
 
 # pipeline configuration
-test_size: 60
+#test_size: 60

@@ -1,7 +1,7 @@
 # environment configuration
 settings:
   docker:
-    required_integrations:
+    #required_integrations:
     requirements:
       - prophet
       - optuna
@@ -9,11 +9,11 @@ settings:
 
 # configuration of the Model Control Plane
 model:
-  name: prophet_forecaster
-  version: prophet
+  name: "prophet_forecaster"
+  version: "production"
   description: A simple prophet forecaster
   tags: ["prophet", "forecaster"]
 
 # Configure the pipeline
-parameters:
-  model_type: "rf"  # Choose between rf/sgd
+#parameters:
+#  model_type: "rf"  # Choose between rf/sgd

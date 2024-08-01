@@ -27,7 +27,10 @@ def inference_predict(
     """
     # run prediction from memory
     future = utils.make_future(model, dataset_inf, periods=horizon)
-    if model.params['growth'] == 'logistic':
+
+    logger.info(f"Model: {model}")
+
+    if model.growth == 'logistic':
         future['cap'] = dataset_inf['y'].max()
         future['floor'] = 0.0
 

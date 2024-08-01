@@ -20,20 +20,18 @@ def inference(bucket_uri: str, input_filename: str, ):
     with the trained model.
 
     Args:
-        random_state: Random state for reproducibility.
-        target: Name of target column in dataset.
+        bucket_uri: The bucket uri
+        input_filename: the input file name
     """
-    # Get the production model artifact
-    model = get_pipeline_context().model.get_artifact("prophet_forecasting")
 
-    # Get the preprocess pipeline artifact associated with this version
-    preprocess_pipeline = get_pipeline_context().model.get_artifact(
-        "preprocess_pipeline"
-    )
+    # Get the production model artifact
+    model = get_pipeline_context().model.get_artifact("prophet_forecaster")
+
+    logger.info(f"Inference model: {model}")
 
     # Link all the steps together by calling them and passing the output
     #  of one step as the input of the next step.
-    raw_data = data_loader(bucket_uri="gs://poc-ctb-data", input_filename="raw_data_histo.csv")
+    raw_data = data_loader(bucket_uri=bucket_uri, input_filename=input_filename)
 
     df_inference = data_preprocessor(
         dataset=raw_data

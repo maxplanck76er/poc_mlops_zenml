@@ -14,7 +14,7 @@ def model_promoter(mase: float, stage: str = "production") -> bool:
     is promoted.
 
     Args:
-        accuracy: Accuracy of the model.
+        mase: Accuracy of the model.
         stage: Which stage to promote the model to.
 
     Returns:

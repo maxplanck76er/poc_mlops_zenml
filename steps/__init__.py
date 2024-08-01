@@ -22,3 +22,6 @@ from .model_promoter import (
 from .model_trainer import (
     model_trainer,
 )
+from .model_optimizer import (
+    model_optimizer,
+)

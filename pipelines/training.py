@@ -59,9 +59,10 @@ def training(
 
     acc = model_evaluator(
         model=model,
+        best_params=best_params,
         dataset_trn=dataset_trn,
         dataset_tst=dataset_tst,
         target=target,
     )
 
-    model_promoter(accuracy=acc)
+    model_promoter(mase=acc)
