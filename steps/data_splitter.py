@@ -10,8 +10,8 @@ from zenml import step
 def data_splitter(
     dataset: pd.DataFrame, test_size: int = 60
 ) -> Tuple[
-    Annotated[pd.DataFrame, "dataset_trn"],
-    Annotated[pd.DataFrame, "dataset_tst"],
+    Annotated[pd.DataFrame, "data_splitter:dataset_trn"],
+    Annotated[pd.DataFrame, "data_splitterdataset_tst"],
 ]:
     """Dataset splitter step.
 

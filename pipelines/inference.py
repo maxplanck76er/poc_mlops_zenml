@@ -37,6 +37,7 @@ def inference(bucket_uri: str, input_filename: str, ):
         dataset=raw_data
     )
 
+    # Make predictions
     inference_predict(
         model=model,
         dataset_inf=df_inference,
