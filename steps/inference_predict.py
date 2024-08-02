@@ -14,7 +14,7 @@ def inference_predict(
     model: Prophet,
     dataset_inf: pd.DataFrame,
     horizon: int = 60
-) -> Annotated[pd.Series, "inference_predict:predictions"]:
+) -> Annotated[pd.Series, "inference_predict::predictions"]:
     """Predictions step.
 
     Args:

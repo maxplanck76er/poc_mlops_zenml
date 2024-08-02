@@ -7,7 +7,7 @@ from zenml import step
 @step
 def data_preprocessor(
     dataset: pd.DataFrame
-) -> Annotated[pd.DataFrame, "data_preprocessor:preprocessed_dataset"]:
+) -> Annotated[pd.DataFrame, "data_preprocessor::preprocessed_dataset"]:
     """Data preprocessor step.
 
     Args:

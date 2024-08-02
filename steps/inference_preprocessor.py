@@ -8,7 +8,7 @@ from zenml import step
 def inference_preprocessor(
     dataset_trn: pd.DataFrame,
     dataset_tst: pd.DataFrame
-) -> Annotated[pd.DataFrame, "inference_preprocessor:inference_dataset"]:
+) -> Annotated[pd.DataFrame, "inference_preprocessor::inference_dataset"]:
     """Data preprocessor step.
 
     Args:

@@ -10,7 +10,7 @@ logger = get_logger(__name__)
 @step
 def data_loader(
     bucket_uri: str, input_filename: str
-) -> Annotated[pd.DataFrame, "data_loader:raw_dataset"]:
+) -> Annotated[pd.DataFrame, "data_loader::raw_dataset"]:
     """Dataset reader step.
 
     This step is responsible for loading the raw input dataset
