@@ -43,7 +43,7 @@ Examples:
 )
 @click.option(
     "--train-dataset-name",
-    default="dataset_trn",
+    default="data_splitter::dataset_trn",
     type=click.STRING,
     help="The name of the train dataset produced by feature engineering.",
 )
@@ -56,7 +56,7 @@ Examples:
 )
 @click.option(
     "--test-dataset-name",
-    default="dataset_tst",
+    default="data_splitter::dataset_tst",
     type=click.STRING,
     help="The name of the test dataset produced by feature engineering.",
 )
@@ -94,9 +94,9 @@ Examples:
 def main(
     bucket_uri: str = "data",
     input_filename: str = "raw_data_histo.csv",
-    train_dataset_name: str = "dataset_trn",
+    train_dataset_name: str = "data_splitter::dataset_trn",
     train_dataset_version_name: Optional[str] = None,
-    test_dataset_name: str = "dataset_tst",
+    test_dataset_name: str = "data_splitter::dataset_tst",
     test_dataset_version_name: Optional[str] = None,
     feature_pipeline: bool = False,
     training_pipeline: bool = False,

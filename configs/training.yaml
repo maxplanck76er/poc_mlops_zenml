@@ -10,7 +10,7 @@ settings:
 # configuration of the Model Control Plane
 model:
   name: "prophet_forecaster"
-  version: "production"
+  version: prophet
   description: A simple prophet forecaster
   tags: ["prophet", "forecaster"]
 
